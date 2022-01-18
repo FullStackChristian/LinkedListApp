@@ -19,20 +19,6 @@ namespace LinkedListApp
             count = 0;
         }
 
-
-        /// <summary>
-        /// Add a node to the start of the linked list
-        /// </summary>
-        /// <param name="data"></param>
-        public void AddNode(string name)
-        {
-            Node node = new Node(name);
-            node.next = head;
-            node.position = count;
-            head = node;
-            count++;
-        }
-
         /// <summary>
         /// Add node with a name and at a specific position
         /// </summary>
@@ -42,25 +28,35 @@ namespace LinkedListApp
         {
             Node node = new Node(name);
             Node scaner = head;
-            while (scaner != null)
+            if (head != null)
             {
-                if (scaner.position == position)
+                while (scaner != null)
                 {
-                    //Add the new node to the current scaners position
-                    node.next = scaner.next;
-                    node.position = position;
-                    //move the current nodes position up
-                    scaner.position = position + 1;
-                    scaner.next = node;
-                    //Make the scaner the next node and then exit the loop
-                    scaner = node.next;
-                    count++;
-                    break;
+                    if (scaner.position == position)
+                    {
+                        //Add the new node to the current scaners position
+                        node.next = scaner.next;
+                        node.position = position;
+                        //move the current nodes position up
+                        scaner.position = position + 1;
+                        scaner.next = node;
+                        //Make the scaner the next node and then exit the loop
+                        scaner = node.next;
+                        count++;
+                        break;
+                    }
+                    //Add position + 1 till the scaner reaches the wanted position
+                    scaner.position++;
+                    //Move the scaner to the next node
+                    scaner = scaner.next;
                 }
-                //Add position + 1 till the scaner reaches the wanted position
-                scaner.position++;
-                //Move the scaner to the next node
-                scaner = scaner.next;
+            }
+            else
+            {
+                node.next = head;
+                node.position = count;
+                head = node;
+                count++;
             }
         }
         /// <summary>
