@@ -15,12 +15,12 @@ namespace LinkedListApp
             list.AddNode("E");
             Console.WriteLine("\nPrint NodeList\n");
             list.PrintList();
-
+            Console.WriteLine($"\nYou currently have {list.Count} Node(s) in your list.");
             Console.WriteLine("\nDeleting node from list:\n");
             list.DeleteNodeAtPosition(0);
 
             list.PrintList();
-
+            Console.WriteLine($"\nYou currently have {list.Count} Node(s) in your list.");
             Console.WriteLine("\nAdding new node to list:\n");
             list.AddNodeAtPosition("Z", 0);
             list.AddNodeAtPosition("Z", 0);
@@ -30,7 +30,7 @@ namespace LinkedListApp
 
             //Console.WriteLine("\nPrint Node at position 2:\n");
             //list.PrintNodeAtPosition(1);
-            //Console.WriteLine($"\nYou currently have {list.Count} Node(s) in your list.");
+            Console.WriteLine($"\nYou currently have {list.Count} Node(s) in your list.");
             
             Console.ReadKey();
         }
