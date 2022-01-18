@@ -23,7 +23,9 @@ namespace LinkedListApp
 
             Console.WriteLine("\nAdding new node to list:\n");
             list.AddNodeAtPosition("Z", 0);
-            
+            list.AddNodeAtPosition("Z", 0);
+            list.AddNodeAtPosition("Z", 0);
+            list.AddNodeAtPosition("Z", 0);
             list.PrintList();
 
             //Console.WriteLine("\nPrint Node at position 2:\n");

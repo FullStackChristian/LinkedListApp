@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LinkedListApp
 {
-    internal class Node
+    public class Node
     {
         public string Name { get; set; }
         public int position;

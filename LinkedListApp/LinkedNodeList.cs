@@ -9,7 +9,8 @@ namespace LinkedListApp
     internal class LinkedNodeList
     {
         // head node in the list
-        Node head;
+        private Node head;
+        public Node Head { get { return head; } set { head = value; } }
         private int count;
         public int Count { get { return count; } }
         public LinkedNodeList()
@@ -17,6 +18,8 @@ namespace LinkedListApp
             head = null;
             count = 0;
         }
+
+
         /// <summary>
         /// Add a node to the start of the linked list
         /// </summary>
@@ -30,13 +33,18 @@ namespace LinkedListApp
             count++;
         }
 
+        /// <summary>
+        /// Add node with a name and at a specific position
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="position"></param>
         public void AddNodeAtPosition(string name, int position)
         {
             Node node = new Node(name);
             Node scaner = head;
-            while(scaner != null)
+            while (scaner != null)
             {
-                if(scaner.position == position)
+                if (scaner.position == position)
                 {
                     //Add the new node to the current scaners position
                     node.next = scaner.next;
@@ -54,6 +62,10 @@ namespace LinkedListApp
                 scaner = scaner.next;
             }
         }
+        /// <summary>
+        /// Delete node at a specific position
+        /// </summary>
+        /// <param name="position"></param>
         public void DeleteNodeAtPosition(int position)
         {
             Node scaner = head;
@@ -70,7 +82,7 @@ namespace LinkedListApp
                 {
                     scaner.next = scaner.next.next;
                     scaner.position--;
-                    
+
                     break;
                 }
                 scaner.position--;
@@ -97,7 +109,7 @@ namespace LinkedListApp
         public void PrintNodeAtPosition(int position)
         {
             Node scaner = head;
-            while(scaner != null)
+            while (scaner != null)
             {
                 if (scaner.position == position)
                 {
