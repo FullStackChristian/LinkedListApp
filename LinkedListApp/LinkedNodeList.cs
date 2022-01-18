@@ -124,7 +124,7 @@ namespace LinkedListApp
         /// <param name="position"></param>
         public void PrintNodeAtPosition(int position)
         {
-            if (head == null)
+            if (head != null)
             {
                 Node scaner = head;
                 while (scaner != null)
