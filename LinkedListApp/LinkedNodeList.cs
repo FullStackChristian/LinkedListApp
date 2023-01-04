@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 
 namespace LinkedListApp
 {
@@ -11,54 +8,71 @@ namespace LinkedListApp
         // head node in the list
         private Node head;
         public Node Head { get { return head; } set { head = value; } }
-        private int count;
-        public int Count { get { return count; } }
+        
         public LinkedNodeList()
         {
             head = null;
-            count = 0;
         }
 
         /// <summary>
-        /// Add node with a name and at a specific position
+        /// Add to the end of the list
+        /// </summary>
+        /// <param name="name"></param>
+        public void AddNode(string name)
+        {
+            if (head == null)
+            {
+                head = new Node(name);
+                return;
+            }
+
+            Node current = head;
+            while(current.next != null)
+            {
+                current = current.next;
+            }
+
+            current.next = new Node(name);
+        }
+
+        /// <summary>
+        /// Add as new Head
+        /// </summary>
+        /// <param name="name"></param>
+        public void PrependNode(string name)
+        {
+            Node newHead = new Node(name);
+            newHead.next = head;
+            head = newHead;
+        }
+
+        /// <summary>
+        /// Add node with a name at a specific position
         /// </summary>
         /// <param name="name"></param>
         /// <param name="position"></param>
         public void AddNodeAtPosition(string name, int position)
         {
             Node node = new Node(name);
-            Node scaner = head;
+            Node current = head;
+
+            if (position == 0)
+            {
+                PrependNode(name);
+                return;
+            }
+
             if (head != null)
             {
-                while (scaner != null)
+                for (int i = 0; i < position - 1; i++)
                 {
-                    if (scaner.position == position)
-                    {
-                        //Add the new node to the current scaners position
-                        node.next = scaner.next;
-                        node.position = position;
-                        //move the current nodes position up
-                        scaner.position = position + 1;
-                        scaner.next = node;
-                        //Make the scaner the next node and then exit the loop
-                        scaner = node.next;
-                        count++;
-                        break;
-                    }
-                    //Add position + 1 till the scaner reaches the wanted position
-                    scaner.position++;
-                    //Move the scaner to the next node
-                    scaner = scaner.next;
+                    current = current.next;
                 }
-            }
-            else
-            {
-                node.next = head;
-                node.position = count;
-                head = node;
-                count++;
+                node.next = current.next;
+                current.next = node;
             }
         }
+
         /// <summary>
         /// Delete node at a specific position
         /// </summary>
@@ -67,26 +81,22 @@ namespace LinkedListApp
         {
             if (head != null)
             {
-                Node scaner = head;
-                while (scaner != null)
+                Node current = head;
+                while (current != null)
                 {
-                    //if having to remove head node:
-                    if (scaner.position == position)
+                    if (position == 0)
                     {
-                        head = scaner.next;
-                        count--;
-                        break;
+                        head = current.next;
+                        return;
                     }
-                    //if havong to remove any other node
-                    if (scaner.position == position + 1)
+
+                    for (int i = 0; i < position - 1; i++)
                     {
-                        scaner.next = scaner.next.next;
-                        scaner.position--;
-                        count--;
-                        break;
+                        current = current.next;
                     }
-                    scaner.position--;
-                    scaner = scaner.next;
+
+                    current.next = current.next.next;
+                    return;
                 }
             }
             else
@@ -94,6 +104,7 @@ namespace LinkedListApp
                 Console.WriteLine("Nothing to delete");
             }
         }
+
         /// <summary>
         /// Print all nodes
         /// </summary>
@@ -105,34 +116,11 @@ namespace LinkedListApp
                 Node scaner = head;
                 while (scaner != null)
                 {
-                    Console.WriteLine($"Name: {scaner.Name} Position: {scaner.position}");
+                    Console.WriteLine($"Name: {scaner.Name}");
                     scaner = scaner.next;
                 }
             }
             else
-            {
-                Console.WriteLine("Nothing to display");
-            }
-        }
-        /// <summary>
-        /// Print node at given position
-        /// </summary>
-        /// <param name="position"></param>
-        public void PrintNodeAtPosition(int position)
-        {
-            if (head != null)
-            {
-                Node scaner = head;
-                while (scaner != null)
-                {
-                    if (scaner.position == position)
-                    {
-                        Console.WriteLine(scaner.Name);
-                    }
-                    scaner = scaner.next;
-                }
-            }
-            else 
             {
                 Console.WriteLine("Nothing to display");
             }

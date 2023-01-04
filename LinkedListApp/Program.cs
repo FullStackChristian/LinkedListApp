@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 
 namespace LinkedListApp
 {
@@ -10,22 +8,21 @@ namespace LinkedListApp
         {
             LinkedNodeList list = new LinkedNodeList();
             list.AddNode("E");
+            list.AddNode("C");
+            list.AddNode("D");
             Console.WriteLine("\nPrint NodeList\n");
             list.PrintList();
-            Console.WriteLine($"\nYou currently have {list.Count} Node(s) in your list.");
-            Console.WriteLine("\nDeleting node from list:\n");
-            list.DeleteNodeAtPosition(0);
 
-            list.PrintList();
-            Console.WriteLine($"\nYou currently have {list.Count} Node(s) in your list.");
-            Console.WriteLine("\nAdding new node to list:\n");
-            list.AddNodeAtPosition("Z", 0);
+            list.AddNodeAtPosition("A", 1);
+
+            Console.WriteLine("\nPrint NodeList\n");
             list.PrintList();
 
-            //Console.WriteLine("\nPrint Node at position 2:\n");
-            //list.PrintNodeAtPosition(1);
-            Console.WriteLine($"\nYou currently have {list.Count} Node(s) in your list.");
-            
+            list.DeleteNodeAtPosition(2);
+
+            Console.WriteLine("\nPrint NodeList\n");
+            list.PrintList();
+
             Console.ReadKey();
         }
     }
